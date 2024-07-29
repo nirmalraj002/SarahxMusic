@@ -11,11 +11,13 @@ jobs:
     steps:
       - checkout
       - python/install-packages
+      pkg-manager: pip
+      - node/install:
+          install-yarn: true
+          node-version: '19'
       - run:
           name: Run tests
           command: sudo apt update && sudo apt install git curl python3-pip ffmpeg -y && python3 -m sarahxmusic
-      - store_test_results:
-          path: junit.xml
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
